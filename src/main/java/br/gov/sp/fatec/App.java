@@ -1,9 +1,11 @@
 package br.gov.sp.fatec;
 
 import br.gov.sp.fatec.model.Caminhao;
+import br.gov.sp.fatec.model.Motorista;
 import br.gov.sp.fatec.model.Rota;
 import br.gov.sp.fatec.repository.CaminhaoRepository;
 import br.gov.sp.fatec.service.CaminhaoService;
+import br.gov.sp.fatec.service.MotoristaService;
 import br.gov.sp.fatec.service.RotaService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,26 +21,33 @@ public class App
 
 		CaminhaoService caminhaoService = (CaminhaoService)context.getBean("caminhaoService");
 		RotaService rotaService = (RotaService)context.getBean("rotaService");
+		MotoristaService motoristaService = (MotoristaService)context.getBean("motoristaService");
 
 		try {
 			rotaService.inicializar();
 			caminhaoService.inicializar();
+			motoristaService.inicializar();
 		}
 		catch(Exception e) {
 			System.out.println("Erro esperado! Rollback realizado!");
 			e.printStackTrace();
 		}
 
-		Caminhao teste = caminhaoService.salvarNovo("Teste");
+		Caminhao testeCaminhao = caminhaoService.salvarNovo("Teste Caminhão");
 		List<Rota> rotas = rotaService.carregarPorOrigem("São José dos Campos");
+		Motorista testeMotorista = motoristaService.salvarNovo("Teste Motorista");
 
 		for (Rota rota : rotas){
-			caminhaoService.adicionarRota(teste.getId(), rota.getId());
+			caminhaoService.adicionarRota(testeCaminhao.getId(), rota.getId());
 		}
 
         for(Caminhao caminhao : caminhaoService.carregarTodos()){
             System.out.println(caminhao.getNome());
         }
+
+		for(Motorista motorista : motoristaService.carregarTodos()){
+			System.out.println(motorista.getNome());
+		}
 
         for(Rota rota : rotaService.carregarTodos()){
             System.out.println("Caminhões para a rota: " + rota.getOrigem() + " à " + rota.getDestino());

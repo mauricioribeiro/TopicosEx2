@@ -3,18 +3,18 @@ package br.gov.sp.fatec.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ROTA")
+@Table(name = "rota")
 public class Rota {
 
 	@Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
 	private Long id;
     
-    @Column(name = "ORIGEM", length = 50, nullable = false)
+    @Column(name = "origem", length = 50, nullable = false)
     private String origem;
     
-    @Column(name = "DESTINO", length = 50, nullable = false)
+    @Column(name = "destino", length = 50, nullable = false)
     private String destino;
 
 	public Long getId() {
