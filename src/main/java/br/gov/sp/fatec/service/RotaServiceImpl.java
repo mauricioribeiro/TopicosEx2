@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Set;
 
 
 @Service("rotaService")
@@ -45,12 +45,12 @@ public class RotaServiceImpl implements RotaService {
     }
 
     @Override
-    public List<Rota> carregarPorOrigem(String origem) {
+    public Set<Rota> carregarPorOrigem(String origem) {
         return rotaRepo.buscaOrigem(origem);
     }
 
     @Override
-    public List<Rota> carregarPorDestino(String destino) {
+    public Set<Rota> carregarPorDestino(String destino) {
         return rotaRepo.buscaDestino(destino);
     }
 }

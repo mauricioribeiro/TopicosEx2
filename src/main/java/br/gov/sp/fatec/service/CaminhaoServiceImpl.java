@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Set;
 
 @Service("caminhaoService")
 public class CaminhaoServiceImpl implements CaminhaoService {
@@ -51,7 +51,7 @@ public class CaminhaoServiceImpl implements CaminhaoService {
 	}
 
     @Override
-    public List<Caminhao> carregarPorRota(Rota rota) {
+    public Set<Caminhao> carregarPorRota(Rota rota) {
         return caminhaoRepo.buscaPorRota(rota.getId());
     }
 
@@ -61,7 +61,7 @@ public class CaminhaoServiceImpl implements CaminhaoService {
 		Caminhao caminhao = caminhaoRepo.findOne(caminhoId);
 		Rota rota = rotaRepo.findOne(rotaId);
         if(caminhao.getId() != null && rota.getId() != null){
-            List<Rota> rotas = caminhao.getRotas();
+            Set<Rota> rotas = caminhao.getRotas();
             if(!rotas.contains(rota)){
                 rotas.add(rota);
                 caminhao.setRotas(rotas);

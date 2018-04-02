@@ -3,14 +3,13 @@ package br.gov.sp.fatec;
 import br.gov.sp.fatec.model.Caminhao;
 import br.gov.sp.fatec.model.Motorista;
 import br.gov.sp.fatec.model.Rota;
-import br.gov.sp.fatec.repository.CaminhaoRepository;
 import br.gov.sp.fatec.service.CaminhaoService;
 import br.gov.sp.fatec.service.MotoristaService;
 import br.gov.sp.fatec.service.RotaService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
+import java.util.Set;
 
 public class App 
 {
@@ -34,7 +33,7 @@ public class App
 		}
 
 		Caminhao testeCaminhao = caminhaoService.salvarNovo("Teste Caminhão");
-		List<Rota> rotas = rotaService.carregarPorOrigem("São José dos Campos");
+		Set<Rota> rotas = rotaService.carregarPorOrigem("São José dos Campos");
 		Motorista testeMotorista = motoristaService.salvarNovo("Teste Motorista");
 
 		for (Rota rota : rotas){

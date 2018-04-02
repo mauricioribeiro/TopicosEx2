@@ -1,7 +1,7 @@
 package br.gov.sp.fatec.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "motorista")
@@ -16,7 +16,7 @@ public class Motorista {
     private String nome;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "motorista")
-    private List<Caminhao> caminhoes;
+    private Set<Caminhao> caminhoes;
 
     public Long getId() {
         return id;
@@ -34,11 +34,11 @@ public class Motorista {
         this.nome = nome;
     }
 
-    public List<Caminhao> getCaminhoes() {
+    public Set<Caminhao> getCaminhoes() {
         return caminhoes;
     }
 
-    public void setCaminhoes(List<Caminhao> caminhoes) {
+    public void setCaminhoes(Set<Caminhao> caminhoes) {
         this.caminhoes = caminhoes;
     }
 }

@@ -1,8 +1,7 @@
 package br.gov.sp.fatec.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "caminhao")
@@ -20,7 +19,7 @@ public class Caminhao {
 	@JoinTable(name = "caminhao_rotas",
 			joinColumns = { @JoinColumn(name = "rota_id") },
 			inverseJoinColumns = { @JoinColumn(name = "caminhao_id") })
-	private List<Rota> rotas = new ArrayList<Rota>();
+	private Set<Rota> rotas;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Motorista motorista;
@@ -41,11 +40,11 @@ public class Caminhao {
 		this.nome = nome;
 	}
 
-	public List<Rota> getRotas() {
+	public Set<Rota> getRotas() {
 		return rotas;
 	}
 
-	public void setRotas(List<Rota> rotas) {
+	public void setRotas(Set<Rota> rotas) {
 		this.rotas = rotas;
 	}
 

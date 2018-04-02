@@ -2,7 +2,7 @@ package br.gov.sp.fatec.service;
 
 import br.gov.sp.fatec.model.Rota;
 
-import java.util.List;
+import java.util.Set;
 
 
 public interface RotaService {
@@ -13,8 +13,8 @@ public interface RotaService {
 
     Iterable<Rota> carregarTodos();
 
-    List<Rota> carregarPorOrigem(String origem);
+    Set<Rota> carregarPorOrigem(String origem);
 
-    List<Rota> carregarPorDestino(String destino);
+    Set<Rota> carregarPorDestino(String destino);
 
 }

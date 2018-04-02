@@ -3,7 +3,7 @@ package br.gov.sp.fatec.service;
 import br.gov.sp.fatec.model.Caminhao;
 import br.gov.sp.fatec.model.Motorista;
 
-import java.util.List;
+import java.util.Set;
 
 
 public interface MotoristaService {
@@ -14,7 +14,7 @@ public interface MotoristaService {
 
 	Iterable<Motorista> carregarTodos();
 
-	List<Motorista> carregarPorCaminhao(Caminhao caminhao);
+	Set<Motorista> carregarPorCaminhao(Caminhao caminhao);
 
 	void adicionarCaminhao(Long caminhoId, Long caminhaoId);
 

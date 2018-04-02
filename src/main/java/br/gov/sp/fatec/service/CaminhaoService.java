@@ -3,7 +3,7 @@ package br.gov.sp.fatec.service;
 import br.gov.sp.fatec.model.Caminhao;
 import br.gov.sp.fatec.model.Rota;
 
-import java.util.List;
+import java.util.Set;
 
 
 public interface CaminhaoService {
@@ -14,7 +14,7 @@ public interface CaminhaoService {
 
 	Iterable<Caminhao> carregarTodos();
 
-	List<Caminhao> carregarPorRota(Rota rota);
+	Set<Caminhao> carregarPorRota(Rota rota);
 
 	void adicionarRota(Long caminhoId, Long rotaId);
 

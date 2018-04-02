@@ -1,14 +1,14 @@
 package br.gov.sp.fatec.service;
 
-import br.gov.sp.fatec.model.Motorista;
 import br.gov.sp.fatec.model.Caminhao;
-import br.gov.sp.fatec.repository.MotoristaRepository;
+import br.gov.sp.fatec.model.Motorista;
 import br.gov.sp.fatec.repository.CaminhaoRepository;
+import br.gov.sp.fatec.repository.MotoristaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Set;
 
 @Service("motoristaService")
 public class MotoristaServiceImpl implements MotoristaService {
@@ -29,7 +29,7 @@ public class MotoristaServiceImpl implements MotoristaService {
 		// Criar motorista
 		Motorista mauricio = new Motorista();
 		mauricio.setNome("Mauricio");
-        mauricio.setCaminhoes((List<Caminhao>) caminhaoRepo.findAll());
+        mauricio.setCaminhoes((Set<Caminhao>) caminhaoRepo.findAll());
 		motoristaRepo.save(mauricio);
 
 		Motorista jullyana = new Motorista();
@@ -54,7 +54,7 @@ public class MotoristaServiceImpl implements MotoristaService {
 	}
 
     @Override
-    public List<Motorista> carregarPorCaminhao(Caminhao caminhao) {
+    public Set<Motorista> carregarPorCaminhao(Caminhao caminhao) {
         return motoristaRepo.buscaPorCaminhao(caminhao.getId());
     }
 
@@ -64,7 +64,7 @@ public class MotoristaServiceImpl implements MotoristaService {
 		Motorista motorista = motoristaRepo.findOne(motoristaId);
 		Caminhao caminhao = caminhaoRepo.findOne(caminhaoId);
         if(motorista.getId() != null && caminhao.getId() != null){
-            List<Caminhao> caminhaos = motorista.getCaminhoes();
+            Set<Caminhao> caminhaos = motorista.getCaminhoes();
             if(!caminhaos.contains(caminhao)){
                 caminhaos.add(caminhao);
                 motorista.setCaminhoes(caminhaos);
