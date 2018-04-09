@@ -53,4 +53,14 @@ public class RotaServiceImpl implements RotaService {
     public Set<Rota> carregarPorDestino(String destino) {
         return rotaRepo.buscaDestino(destino);
     }
+
+    @Override
+    public void removerPorId(Long id) {
+        rotaRepo.delete(id);
+    }
+
+    @Override
+    public Rota buscarPorId(Long id) {
+        return rotaRepo.findOne(id);
+    }
 }

@@ -72,4 +72,14 @@ public class MotoristaServiceImpl implements MotoristaService {
             }
         }
 	}
+
+	@Override
+	public void removerPorId(Long id) {
+		motoristaRepo.delete(id);
+	}
+
+	@Override
+	public Motorista buscarPorId(Long id) {
+		return motoristaRepo.findOne(id);
+	}
 }

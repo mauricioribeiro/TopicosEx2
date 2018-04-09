@@ -18,4 +18,8 @@ public interface CaminhaoService {
 
 	void adicionarRota(Long caminhoId, Long rotaId);
 
+	void removerPorId(Long id);
+
+	Caminhao buscarPorId(Long id);
+
 }

@@ -69,4 +69,14 @@ public class CaminhaoServiceImpl implements CaminhaoService {
             }
         }
 	}
+
+	@Override
+	public void removerPorId(Long id) {
+		caminhaoRepo.delete(id);
+	}
+
+	@Override
+	public Caminhao buscarPorId(Long id) {
+		return caminhaoRepo.findOne(id);
+	}
 }

@@ -2,7 +2,7 @@ package br.sp.gov.fatec;
 
 import br.gov.sp.fatec.model.Caminhao;
 import br.gov.sp.fatec.model.Rota;
-import br.gov.sp.fatec.repository.CaminhaoRepository;
+import br.gov.sp.fatec.service.CaminhaoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,43 +19,29 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/applicationContext.xml" })
 @Transactional
-public class CaminhaoRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class CaminhaoServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     private static final String NOME = "Caminhao A";
-    private static final String ROTA_ORIGEM = "São Paulo";
-    private static final String ROTA_DESTINO = "São José dos Campos";
 
     @Autowired
-    private CaminhaoRepository caminhaoRepo;
+    private CaminhaoService caminhaoService;
 
-    private Caminhao create(){
-        Caminhao caminhao = new Caminhao();
-        caminhao.setNome(NOME);
-
-        Rota rota = new Rota();
-        rota.setOrigem(ROTA_ORIGEM);
-        rota.setDestino(ROTA_DESTINO);
-        caminhao.setRotas(new HashSet<Rota>(Collections.singletonList(rota)));
-
-        return caminhao;
-    }
-
-    public void setCaminhaoRepo(CaminhaoRepository caminhaoRepo) {
-        this.caminhaoRepo = caminhaoRepo;
+    public void setCaminhaoRepo(CaminhaoService caminhaoService) {
+        this.caminhaoService = caminhaoService;
     }
 
     @Test
     public void testeInsercaoOk() {
-        Caminhao caminhao = caminhaoRepo.save(create());
+        Caminhao caminhao = caminhaoService.salvarNovo(NOME);
         assertTrue(caminhao.getId() != null);
     }
 
     @Test
     public void testeDeletarOk() {
-        Caminhao caminhao = caminhaoRepo.save(create());
+        Caminhao caminhao = caminhaoService.salvarNovo(NOME);
         Long id = caminhao.getId();
-        caminhaoRepo.delete(id);
+        caminhaoService.removerPorId(id);
 
-        assertTrue(caminhaoRepo.findOne(id) == null);
+        assertTrue(caminhaoService.buscarPorId(id) == null);
     }
 }

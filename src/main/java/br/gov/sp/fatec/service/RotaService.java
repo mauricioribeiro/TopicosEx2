@@ -17,4 +17,8 @@ public interface RotaService {
 
     Set<Rota> carregarPorDestino(String destino);
 
+    void removerPorId(Long id);
+
+    Rota buscarPorId(Long id);
+
 }

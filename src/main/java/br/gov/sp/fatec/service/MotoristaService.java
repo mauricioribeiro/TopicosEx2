@@ -18,4 +18,8 @@ public interface MotoristaService {
 
 	void adicionarCaminhao(Long caminhoId, Long caminhaoId);
 
+	void removerPorId(Long id);
+
+	Motorista buscarPorId(Long id);
+
 }
