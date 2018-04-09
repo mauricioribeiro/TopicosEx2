@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,5 +49,11 @@ public class RotaRepositoryTest extends AbstractTransactionalJUnit4SpringContext
         rotaRepo.delete(id);
 
         assertTrue(rotaRepo.findOne(id) == null);
+    }
+
+    @Test
+    public void testeConsultaOk(){
+        Rota rota = rotaRepo.save(create());
+        assertNotNull(rotaRepo.buscaOrigem(ORIGEM));
     }
 }

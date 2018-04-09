@@ -15,13 +15,13 @@ public class Caminhao {
     @Column(name = "nome", unique=true, length = 50, nullable = false)
     private String nome;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "caminhao_rotas",
 			joinColumns = { @JoinColumn(name = "rota_id") },
 			inverseJoinColumns = { @JoinColumn(name = "caminhao_id") })
 	private Set<Rota> rotas;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Motorista motorista;
 
 	public Long getId() {

@@ -15,7 +15,7 @@ public class Motorista {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "motorista")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "motorista", cascade = CascadeType.ALL)
     private Set<Caminhao> caminhoes;
 
     public Long getId() {

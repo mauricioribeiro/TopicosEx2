@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -55,5 +56,12 @@ public class MotoristaRepositoryTest extends AbstractTransactionalJUnit4SpringCo
         motoristaRepo.delete(id);
 
         assertTrue(motoristaRepo.findOne(id) == null);
+    }
+
+    @Test
+    public void testeConsultaOk(){
+        Motorista motorista = motoristaRepo.save(create());
+        Caminhao caminhao = motorista.getCaminhoes().iterator().next();
+        assertNotNull(motoristaRepo.buscaPorCaminhao(caminhao.getId()));
     }
 }

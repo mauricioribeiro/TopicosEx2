@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 import java.util.HashSet;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -56,6 +58,13 @@ public class CaminhaoRepositoryTest extends AbstractTransactionalJUnit4SpringCon
         Long id = caminhao.getId();
         caminhaoRepo.delete(id);
 
-        assertTrue(caminhaoRepo.findOne(id) == null);
+        assertNull(caminhaoRepo.findOne(id));
+    }
+
+    @Test
+    public void testeConsultaOk(){
+        Caminhao caminhao = caminhaoRepo.save(create());
+        Rota rota = caminhao.getRotas().iterator().next();
+        assertNotNull(caminhaoRepo.buscaPorRota(rota.getId()));
     }
 }
